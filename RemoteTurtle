@@ -1,13 +1,13 @@
 if turtle then
 print[[---------------------------------------
-Welcome to RemoteTurtle V2.2.2
+Welcome to RemoteTurtle V2.2.1
 ---------------------------------------]]
 else
 if term.isColor() then
 term.setTextColor(colors.lime)
 end
 print[[---------------------------------------------------
-Welcome to RemoteTurtle V2.2.2
+Welcome to RemoteTurtle V2.2.1
 ---------------------------------------------------
 ]]
 end
@@ -93,18 +93,23 @@ elseif
   l==i and k==("xdown") then
   turtle.digDown()
 elseif
-  l==i and k==("tunnel") then -- Doesn't work. dig up, Left, up, right, right, down, left
-  turtle.digUp()
-  turtle.turnLeft()
-  turtle.dig()
-  turtle.up()
-  turtle.dig()
-  turtle.turnRight()
-  turtle.turnRight()
-  turtle.dig()
-  turtle.down()
-  turtle.dig()
-  turtle.turnLeft()
+  l==i and k==("tunnel") then -- dig up, Left, up, right, right, down, left
+  repeat
+  print("How many times?")
+  until k>=1
+  for k, 0, 1 do
+	turtle.digUp()
+	turtle.turnLeft()
+	turtle.dig()
+	turtle.up()
+	turtle.dig()
+	turtle.turnRight()
+	turtle.turnRight()
+	turtle.dig()
+	turtle.down()
+	turtle.dig()
+	turtle.turnLeft()
+  end
 elseif
   l==i and k==("clear") then
   os.setComputerLabel("")
@@ -222,6 +227,7 @@ elseif
                 print("x --> dig")
                 print("xup --> dig up")
                 print("xdown --> dig down")
+				print("tunnel --> dig 3x2")
                 print("f --> attack")
                 print("fup/fdown --> attacks up/down")
                 print("shutdown --> Shuts down transmitter and receiver")
