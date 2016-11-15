@@ -1,13 +1,13 @@
 if turtle then
 print[[---------------------------------------
-Welcome to RemoteTurtle V2.2.1
+Welcome to RemoteTurtle V2.2.2
 ---------------------------------------]]
 else
 if term.isColor() then
 term.setTextColor(colors.lime)
 end
 print[[---------------------------------------------------
-Welcome to RemoteTurtle V2.2.1
+Welcome to RemoteTurtle V2.2.2
 ---------------------------------------------------
 ]]
 end
