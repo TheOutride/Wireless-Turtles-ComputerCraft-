@@ -1,13 +1,13 @@
 if turtle then
 print[[---------------------------------------
-Welcome to RemoteTurtle V2.2.3
+Welcome to RemoteTurtle V2.2.4
 ---------------------------------------]]
 else
 if term.isColor() then
 term.setTextColor(colors.lime)
 end
 print[[---------------------------------------------------
-Welcome to RemoteTurtle V2.2.3
+Welcome to RemoteTurtle V2.2.4
 ---------------------------------------------------
 ]]
 end
@@ -93,11 +93,8 @@ elseif
   l==i and k==("xdown") then
   turtle.digDown()
 elseif
-  l==i and k==("tunnel") then -- dig up, Left, up, right, right, down, left
-  repeat
-  print("How many times?")
-  until k>=1
-  repeat
+  l==i and tonumber(k)~=nil then -- dig up, Left, up, right, right, down, left
+  while k>=1 do
 	turtle.digUp()
 	turtle.turnLeft()
 	turtle.dig()
@@ -109,8 +106,12 @@ elseif
 	turtle.down()
 	turtle.dig()
 	turtle.turnLeft()
-	k = k - 1
-  until k<=0
+	k = k-1
+	if
+		k>=1 then
+		turtle.dig()
+		turtle.forward()
+	end
   end
 elseif
   l==i and k==("clear") then
@@ -242,8 +243,19 @@ elseif
                 x==("AddCommand") then
                 print("To set this up you have to go to your turtle")
                 rednet.send(l,x)
-          else
-                rednet.send(l,x)
+
+		  else
+				if
+					x=="tunnel"
+				then
+					repeat
+					print("how many times?")
+					z = tonumber(read())
+					until z >=1
+					rednet.send(l,z)
+				else
+					rednet.send(l,x)
+					end
                 sleep(0.00000001)
                 y,u=rednet.receive(3)
                 if u==("p2") and y==l then
