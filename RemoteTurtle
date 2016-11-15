@@ -1,0 +1,271 @@
+if turtle then
+print[[---------------------------------------
+Welcome to RemoteTurtle V2.2
+---------------------------------------]]
+else
+if term.isColor() then
+term.setTextColor(colors.lime)
+end
+print[[---------------------------------------------------
+Welcome to RemoteTurtle V2.2
+---------------------------------------------------
+]]
+end
+if term.isColor() then
+term.setTextColor(colors.white)
+end
+repeat
+  print("Does the program already exist on your device")
+  q=read()
+  if
+        q==("yes")
+  then
+        sleep(0)
+  else
+        if
+          q==("no")
+        then
+          os.setComputerLabel("not yet defined")
+          fs.copy("disk/startup","startup")
+          print("You can now safely break the device and place it somewhere else without program loss")
+ 
+          error()  
+         end
+  end
+until q==("yes") or q==("no")
+ 
+print("")
+repeat
+  print("Do you want this device to transmit or receive?")
+  p=read()
+  if
+        p==("receive")
+  then
+ 
+os.setComputerLabel("Remote Turtle")
+print("")
+shell.run("id")
+rednet.open("right")
+print("")
+print("What Id Do You Want To Link To?")
+l=tonumber(read())
+repeat
+i,k=rednet.receive()
+z=turtle.getFuelLevel()
+if
+  z==0 then
+  shell.run("refuel")
+end
+z=turtle.getFuelLevel()
+if
+  z==0 then
+  rednet.send(l,"p2")
+end
+if
+  l==i and k==("w") then
+  turtle.forward()
+elseif
+  l==i and k==("a") then
+  turtle.turnLeft()
+elseif
+  l==i and k==("s") then
+  turtle.turnRight()
+  turtle.turnRight()
+elseif
+  l==i and k==("d") then
+  turtle.turnRight()
+elseif
+  l==i and k==("q") then
+  turtle.up()
+elseif
+  l==i and k==("z") then
+  turtle.down()
+elseif
+  l==i and k==("r") then
+  shell.run("refuel")
+elseif
+  l==i and k==("x") then
+  turtle.dig()
+elseif
+  l==i and k==("xup") then
+  turtle.digUp()
+elseif
+  l==i and k==("xdown") then
+  turtle.digDown()
+elseif
+  l==i and k==("tunnel") then
+  turtle.tunnel()
+elseif
+  l==i and k==("clear") then
+  os.setComputerLabel("")
+elseif
+  l==i and k==("f") then
+  turtle.attack()
+elseif
+  l==i and k==("fup") then
+  turtle.attackUp()
+elseif
+  l==i and k==("fdown") then
+  turtle.attackDown()
+elseif
+  l==i and k==("reboot") then
+  os.reboot()
+elseif
+  l==i and k==("shutdown") then
+  os.shutdown()
+elseif
+  l==i and k==(cmd1) then
+  turtle[cmd1e]()
+elseif
+  l==i and k==(cmd2) then
+  turtle[cmd2e]()
+elseif
+  l==i and k==(cmd3) then
+  turtle[cmd3e]()
+elseif
+ 
+  l==i and k==("AddCommand") then
+  print("Which command do you want to change? 1/2/3")
+  cwhat=read()
+  print("for the question :What do you want to execute? you answer has to be what would fill in the blank spot: turtle.[BLANK SPOT]()")
+ 
+  if cwhat == ("1") then
+        print("What do you want to type to to execute")
+ 
+        cmd1=read()  
+        print("What do you want to execute?")
+        cmd1e=read()
+  elseif
+        chwat == ("2") then
+        print("What do you want to type to execute?")
+        cmd2=read()
+        print("What do you want to execute?")
+        cmd2e=read()
+  elseif
+        chwat == ("3") then
+        print("What do you want to type to execute?")
+        cmd3=read()
+        print("What do you want to execute?")
+        cmd3e=read()
+  end
+ 
+ 
+else
+  sleep(0.2)
+  print("Doesn't match")
+  rednet.send(l,"p")
+end
+sleep(0.2)
+rednet.send(l,"Matches")
+ 
+until
+l==i and k==("stop") or l==i and k==("clear")
+elseif
+        p==("transmit")
+  then
+        os.setComputerLabel("Remote Controller")
+        print("")
+        shell.run("id")
+        print("")
+ 
+ 
+          if
+                peripheral.getType("right") == "modem" then
+                rednet.open("right")
+          elseif
+                peripheral.getType("left") == "modem" then
+                rednet.open("left")
+          elseif
+                peripheral.getType("top") == "modem" then
+                rednet.open("top")
+          elseif
+                peripheral.getType("bottom") == "modem" then
+                rednet.open("bottom")
+          elseif
+                peripheral.getType("back") == "modem" then
+                rednet.open("back")
+          elseif
+                peripheral.getType("front") == "modem" then
+                rednet.open("front")
+          end
+ 
+ 
+ 
+        print("")
+ 
+        print("What id would you like to connect to?")
+        l=tonumber(read())
+ 
+        print("")
+        print("Type /list for a list of commands")
+        print("")
+ 
+        repeat
+          write("Command : ")
+          x=read()
+          if
+                x==("/list")
+          then
+                print("r --> refuel (This should be done automaticly)")
+                print("w/a/s/d --> movement")
+                print("q/z --> up/down")
+                print("x --> dig")
+                print("xup --> dig up")
+                print("xdown --> dig down")
+                print("f --> attack")
+                print("fup/fdown --> attacks up/down")
+                print("shutdown --> Shuts down transmitter and receiver")
+                print("reboot --> reboots transmitter and receiver")
+                print("stop --> Stops using this program")
+                print("clear --> Clear Memory after picking up")
+                print("AddCommand --> Allows you to add commands")
+ 
+          elseif
+                x==("AddCommand") then
+                print("To set this up you have to go to your turtle")
+                rednet.send(l,x)
+          else
+                rednet.send(l,x)
+                sleep(0.00000001)
+                y,u=rednet.receive(3)
+                if u==("p2") and y==l then
+                  if term.isColor() then
+                        term.setTextColor(colors.red)
+                  end
+                  print("Out of coal and fuel")
+                  if term.setTextColor then
+                        term.setTextColor(colors.white)
+                  end                  
+                end
+                if u==("p") and y==l then
+                  if term.isColor() then
+                        term.setTextColor(colors.red)
+                  end
+                  print("Incorrect Comand")
+                  if term.isColor() then
+                        term.setTextColor(colors.white)
+                  end
+ 
+                elseif u==("Matches") and y==l then
+                  if term.isColor() then
+                        term.setTextColor(colors.green)
+                  end
+                end
+                  print("Command Correct")
+                  if term.isColor() then
+                        term.setTextColor(colors.white)
+                  end
+                end
+ 
+        until
+          x==("clear") or x==("stop")
+        end
+ 
+        if
+          x==("clear")
+        then
+          os.setComputerLabel("")
+        end
+ 
+  until
+p==("receive") or p==("transmit")
