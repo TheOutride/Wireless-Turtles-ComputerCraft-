@@ -1,13 +1,13 @@
 if turtle then
 print[[---------------------------------------
-Welcome to RemoteTurtle V2.2.2
+Welcome to RemoteTurtle V2.2.3
 ---------------------------------------]]
 else
 if term.isColor() then
 term.setTextColor(colors.lime)
 end
 print[[---------------------------------------------------
-Welcome to RemoteTurtle V2.2.2
+Welcome to RemoteTurtle V2.2.3
 ---------------------------------------------------
 ]]
 end
@@ -97,7 +97,7 @@ elseif
   repeat
   print("How many times?")
   until k>=1
-  for k, 0, 1 do
+  repeat
 	turtle.digUp()
 	turtle.turnLeft()
 	turtle.dig()
@@ -109,6 +109,8 @@ elseif
 	turtle.down()
 	turtle.dig()
 	turtle.turnLeft()
+	k = k - 1
+  until k<=0
   end
 elseif
   l==i and k==("clear") then
