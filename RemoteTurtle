@@ -1,13 +1,13 @@
 if turtle then
 print[[---------------------------------------
-Welcome to RemoteTurtle V2.2
+Welcome to RemoteTurtle V2.2.1
 ---------------------------------------]]
 else
 if term.isColor() then
 term.setTextColor(colors.lime)
 end
 print[[---------------------------------------------------
-Welcome to RemoteTurtle V2.2
+Welcome to RemoteTurtle V2.2.1
 ---------------------------------------------------
 ]]
 end
@@ -93,8 +93,18 @@ elseif
   l==i and k==("xdown") then
   turtle.digDown()
 elseif
-  l==i and k==("tunnel") then
-  turtle.tunnel()
+  l==i and k==("tunnel") then -- Fixed! There was no turtle.tunnel()
+  turtle.digUp()
+  turtle.turnLeft()
+  turtle.dig()
+  turtle.up()
+  turtle.dig()
+  turtle.right()
+  turtle.right()
+  turtle.dig()
+  turtle.down()
+  turtle.dig()
+  turtle.left()
 elseif
   l==i and k==("clear") then
   os.setComputerLabel("")
