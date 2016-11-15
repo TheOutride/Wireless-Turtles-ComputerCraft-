@@ -39,8 +39,9 @@ Welcome to suggestions, ideas, and feedback.
 I don't own the code, I've just gone back and changed some things as well as re-uploaded the code to pastebin. The NanoBob's code isn't available on pastebin, but it was available on the forum post.
 
 Things I'm working on:
-  Tunnel command
-    Currently you can only dig 1 block at a time.
+
+  Tunnel command (Added 2.2!)
+    
   Multiple commands
     - Follow ups, such as moving left, then forward, then right and so on.
     - Input number, so the turtle can move X times.
